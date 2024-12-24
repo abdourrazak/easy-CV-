@@ -143,8 +143,8 @@ export default function Home() {
           <div className="w-1/3 h-full p-10 bg-base-200 scrollable no-scrollbar ">
             <div className="mb-4 flex justify-between items-center">
               <h1 className="text-2xl font-bold italic">
-                CV
-                <span className="text-primary">Builder</span>
+                Easy
+                <span className="text-primary">CV</span>
 
               </h1>
 
