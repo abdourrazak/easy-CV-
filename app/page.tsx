@@ -73,23 +73,23 @@ export default function Home() {
     "sunset",
   ]
 
-  const handleResetPersonalDetails = () => setPersonalDetails(
-    {
-      fullName: '',
-      email: '',
-      phone: '',
-      address: '',
-      photoUrl: '',
-      postSeeking: '',
-      description: ''
-    }
-  )
+  const handleResetPersonalDetails = () => {
+    setPersonalDetails(personalDetailsPreset)
+    // Réinitialiser l'image par défaut
+    const defaultImageUrl = '/toffProfile.jpg'
+    fetch(defaultImageUrl)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const defaultFile = new File([blob], "toffProfile.jpg", { type: blob.type })
+        setFile(defaultFile)
+      })
+  }
 
-  const handleResetExperiences = () => setExperience([])
-  const handleResetEducations = () => setEducations([])
-  const handleResetLanguages = () => setLanguages([])
-  const handleResetSkills = () => setSkills([])
-  const handleResetHobbies = () => setHobbies([]);
+  const handleResetExperiences = () => setExperience(experiencesPreset)
+  const handleResetEducations = () => setEducations(educationsPreset)
+  const handleResetLanguages = () => setLanguages(languagesPreset)
+  const handleResetSkills = () => setSkills(skillsPreset)
+  const handleResetHobbies = () => setHobbies(hobbiesPreset);
 
   const cvPreviewRef = useRef(null)
 
