@@ -18,8 +18,8 @@ import confetti from "canvas-confetti"
 export default function Home() {
   const [personalDetails, setPersonalDetails] = useState<PersonalDetails>(personalDetailsPreset)
   const [file, setFile] = useState<File | null>(null)
-  const [theme, setTheme] = useState<string>('cupcake')
-  const [zoom, setZoom] = useState<number>(163)
+  const [theme, setTheme] = useState<string>('nord')
+  const [zoom, setZoom] = useState<number>(200)
   const [experiences, setExperience] = useState<Experience[]>(experiencesPreset)
   const [educations, setEducations] = useState<Education[]>(educationsPreset)
   const [languages, setLanguages] = useState<Language[]>(languagesPreset)

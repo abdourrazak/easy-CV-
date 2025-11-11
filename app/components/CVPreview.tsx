@@ -64,7 +64,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
         <div ref={ref} className={` flex p-16 w-[950px] h-[1200px] shadow-lg ${download ? 'mb-10' : ''}`} data-theme={theme}>
 
             <div className='flex flex-col w-1/3'>
-                <div className='h-80 rounded-full border-8 overflow-hidden border-primary hobbies'>
+                <div className='h-80 rounded-full border-4 overflow-hidden border-primary hobbies'>
                     {file && (
                         <Image
                             src={URL.createObjectURL(file)}
@@ -89,7 +89,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                         <ul className='space-y-2'>
 
                             <li className='flex'>
-                                <div className='break-all text-sm relative'>
+                                <div className='break-all text-base relative'>
                                     <div className='ml-8'>
                                         {personalDetails.phone}
                                     </div>
@@ -101,7 +101,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 </div>
                             </li>
                             <li className='flex'>
-                                <div className='break-all text-sm relative'>
+                                <div className='break-all text-base relative'>
                                     <div className='ml-8'>
                                         {personalDetails.email}
                                     </div>
@@ -113,7 +113,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 </div>
                             </li>
                             <li className='flex'>
-                                <div className='break-all text-sm relative'>
+                                <div className='break-all text-base relative'>
                                     <div className='ml-8'>
                                         {personalDetails.address}
                                     </div>
@@ -181,13 +181,13 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
             <div className='w-2/3 ml-8'>
 
                 <div className='w-full flex flex-col space-y-4'>
-                    <h1 className='uppercase text-xl'>
+                    <h1 className='uppercase text-2xl font-semibold'>
                         {personalDetails.fullName}
                     </h1>
-                    <h2 className='uppercase text-5xl text-primary font-bold'>
+                    <h2 className='uppercase text-6xl text-primary font-bold'>
                         {personalDetails.postSeeking}
                     </h2>
-                    <p className='break-all  w-full text-sm'>
+                    <p className='break-all  w-full text-base'>
                         {personalDetails.description}
                     </p>
                 </div>
@@ -205,12 +205,12 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 <li className='step step-primary' key={index}>
                                     <div className='text-left'>
                                         <h2
-                                            className='flex text-md uppercase font-bold'>
+                                            className='flex text-lg uppercase font-bold'>
                                             <BriefcaseBusiness className='w-5' />
                                             <span className='ml-2'>{exp.jobTitle}</span>
                                         </h2>
                                         <div
-                                            className='text-sm my-2'
+                                            className='text-base my-2'
                                         >
                                             <span
                                                 className='badge badge-primary'
@@ -225,7 +225,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             </span>
 
                                         </div>
-                                        <p className='text-sm'>
+                                        <p className='text-base'>
                                             {exp.description}
                                         </p>
                                     </div>
@@ -244,12 +244,12 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 <li className='step step-primary' key={index}>
                                     <div className='text-left'>
                                         <h2
-                                            className='flex text-md uppercase font-bold'>
+                                            className='flex text-lg uppercase font-bold'>
                                             <GraduationCap className='w-5' />
                                             <span className='ml-2'>{edu.degree}</span>
                                         </h2>
                                         <div
-                                            className='text-sm my-2'
+                                            className='text-base my-2'
                                         >
                                             <span
                                                 className='badge badge-primary'
@@ -264,7 +264,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             </span>
 
                                         </div>
-                                        <p className='text-sm'>
+                                        <p className='text-base'>
                                             {edu.description}
                                         </p>
                                     </div>
