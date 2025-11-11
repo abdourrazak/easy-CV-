@@ -1,5 +1,5 @@
 import { Education } from '@/type';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, Calendar } from 'lucide-react';
 import React, { useState } from 'react'
 
 type Props = {
@@ -79,20 +79,26 @@ const EducationForm: React.FC<Props> = ({ educations, setEducations }) => {
                     </div>
 
                     <div className='flex justify-between'>
-                        <input
-                            type="date"
-                            placeholder='Date de début'
-                            value={edu.startDate}
-                            onChange={(e) => handleExistingChange(index, 'startDate', e.target.value)}
-                            className='input input-bordered w-full'
-                        />
-                        <input
-                            type="date"
-                            placeholder='Date de fin'
-                            value={edu.endDate}
-                            onChange={(e) => handleExistingChange(index, 'endDate', e.target.value)}
-                            className='input input-bordered w-full ml-4'
-                        />
+                        <label className='input input-bordered flex items-center gap-2 w-full'>
+                            <Calendar className='w-4 h-4 opacity-70' />
+                            <input
+                                type="date"
+                                placeholder='Date de début'
+                                value={edu.startDate}
+                                onChange={(e) => handleExistingChange(index, 'startDate', e.target.value)}
+                                className='grow'
+                            />
+                        </label>
+                        <label className='input input-bordered flex items-center gap-2 w-full ml-4'>
+                            <Calendar className='w-4 h-4 opacity-70' />
+                            <input
+                                type="date"
+                                placeholder='Date de fin'
+                                value={edu.endDate}
+                                onChange={(e) => handleExistingChange(index, 'endDate', e.target.value)}
+                                className='grow'
+                            />
+                        </label>
                     </div>
                     
                     <textarea
@@ -124,28 +130,34 @@ const EducationForm: React.FC<Props> = ({ educations, setEducations }) => {
                 </div>
 
                 <div className='flex justify-between'>
-                    <input
-                        type="text"
-                        placeholder='Date de début'
-                        onFocus={(e) => e.target.type = "date"}
-                        onBlur={(e) => {
-                            if (!e.target.value) e.target.type = "text"
-                        }}
-                        value={newEducation.startDate}
-                        onChange={(e) => handleChange(e, 'startDate')}
-                        className='input input-bordered w-full'
-                    />
-                    <input
-                        type="text"
-                        placeholder='Date de fin'
-                        onFocus={(e) => e.target.type = "date"}
-                        onBlur={(e) => {
-                            if (!e.target.value) e.target.type = "text"
-                        }}
-                        value={newEducation.endDate}
-                        onChange={(e) => handleChange(e, 'endDate')}
-                        className='input input-bordered w-full ml-4'
-                    />
+                    <label className='input input-bordered flex items-center gap-2 w-full'>
+                        <Calendar className='w-4 h-4 opacity-70' />
+                        <input
+                            type="text"
+                            placeholder='Date de début'
+                            onFocus={(e) => e.target.type = "date"}
+                            onBlur={(e) => {
+                                if (!e.target.value) e.target.type = "text"
+                            }}
+                            value={newEducation.startDate}
+                            onChange={(e) => handleChange(e, 'startDate')}
+                            className='grow'
+                        />
+                    </label>
+                    <label className='input input-bordered flex items-center gap-2 w-full ml-4'>
+                        <Calendar className='w-4 h-4 opacity-70' />
+                        <input
+                            type="text"
+                            placeholder='Date de fin'
+                            onFocus={(e) => e.target.type = "date"}
+                            onBlur={(e) => {
+                                if (!e.target.value) e.target.type = "text"
+                            }}
+                            value={newEducation.endDate}
+                            onChange={(e) => handleChange(e, 'endDate')}
+                            className='grow'
+                        />
+                    </label>
                 </div>
                 
                 <textarea
