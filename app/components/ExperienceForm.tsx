@@ -81,8 +81,8 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
                         />
                     </div>
 
-                    <div className='flex justify-between'>
-                        <label className='input input-bordered flex items-center gap-2 w-full'>
+                    <div className='flex justify-between gap-2'>
+                        <label className='input input-bordered flex items-center gap-1 w-full'>
                             <Calendar className='w-3 h-3 opacity-70' />
                             <input
                                 type="date"
@@ -92,7 +92,7 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
                                 className='grow'
                             />
                         </label>
-                        <label className='input input-bordered flex items-center gap-2 w-full ml-4'>
+                        <label className='input input-bordered flex items-center gap-1 w-full'>
                             <Calendar className='w-3 h-3 opacity-70' />
                             <input
                                 type="date"
@@ -127,13 +127,13 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
                         placeholder="Nom de l'entreprise"
                         value={newExperience.companyName}
                         onChange={(e) => handleChange(e, 'companyName')}
-                        className='input input-bordered w-full ml-4'
+                        className='input input-bordered w-full'
                     />
                 </div>
 
-                <div className='flex justify-between'>
-                    <label className='input input-bordered flex items-center gap-2 w-full'>
-                        <Calendar className='w-4 h-4 opacity-70' />
+                <div className='flex justify-between gap-2'>
+                    <label className='input input-bordered flex items-center gap-1 w-full'>
+                        <Calendar className='w-3 h-3 opacity-70' />
                         <input
                             type="text"
                             placeholder='Date de début'
@@ -146,8 +146,8 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
                             className='grow'
                         />
                     </label>
-                    <label className='input input-bordered flex items-center gap-2 w-full ml-4'>
-                        <Calendar className='w-4 h-4 opacity-70' />
+                    <label className='input input-bordered flex items-center gap-1 w-full'>
+                        <Calendar className='w-3 h-3 opacity-70' />
                         <input
                             type="text"
                             placeholder='Date de fin'
