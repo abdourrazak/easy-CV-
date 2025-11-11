@@ -1,5 +1,5 @@
 import { Skill } from '@/type';
-import { Plus } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import React, { useState } from 'react'
 
 type Props = {
@@ -19,13 +19,44 @@ const SkillForm: React.FC<Props> = ({ skills, setSkills }) => {
     setNewSkill({ ...newSkill, [fied]: e.target.value })
   }
 
+  const handleExistingChange = (index: number, field: keyof Skill, value: string) => {
+    const updatedSkills = [...skills]
+    updatedSkills[index] = { ...updatedSkills[index], [field]: value }
+    setSkills(updatedSkills)
+  }
+
   const handleAddSkill = () => {
     setSkills([...skills, newSkill]);
     setNewSkill({ name: '' });
   }
 
+  const handleDeleteSkill = (index: number) => {
+    const updatedSkills = skills.filter((_, i) => i !== index)
+    setSkills(updatedSkills)
+  }
+
   return (
     <div>
+      {/* Afficher les compétences existantes */}
+      {skills.map((skill, index) => (
+        <div key={index} className='flex items-center gap-2 mb-4 p-3 border border-primary rounded-lg'>
+          <input
+            type="text"
+            placeholder="compétence"
+            value={skill.name}
+            onChange={(e) => handleExistingChange(index, 'name', e.target.value)}
+            className='input input-bordered input-sm w-full'
+          />
+          <button
+            onClick={() => handleDeleteSkill(index)}
+            className='btn btn-error btn-xs'
+          >
+            <Trash2 className='w-3' />
+          </button>
+        </div>
+      ))}
+
+      {/* Formulaire pour ajouter une nouvelle compétence */}
       <div className='mt-4'>
         <input
           type="text"
