@@ -83,7 +83,7 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
 
                     <div className='flex justify-between'>
                         <label className='input input-bordered flex items-center gap-2 w-full'>
-                            <Calendar className='w-4 h-4 opacity-70' />
+                            <Calendar className='w-3 h-3 opacity-70' />
                             <input
                                 type="date"
                                 placeholder='Date de début'
@@ -93,7 +93,7 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
                             />
                         </label>
                         <label className='input input-bordered flex items-center gap-2 w-full ml-4'>
-                            <Calendar className='w-4 h-4 opacity-70' />
+                            <Calendar className='w-3 h-3 opacity-70' />
                             <input
                                 type="date"
                                 placeholder='Date de fin'
