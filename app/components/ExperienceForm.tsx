@@ -1,5 +1,5 @@
 import { Experience } from '@/type';
-import { Plus } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import React, { useState } from 'react'
 
 type Props = {
@@ -23,6 +23,12 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
         setNewExperience({ ...newExperience, [fied]: e.target.value })
     }
 
+    const handleExistingChange = (index: number, field: keyof Experience, value: string) => {
+        const updatedExperiences = [...experience]
+        updatedExperiences[index] = { ...updatedExperiences[index], [field]: value }
+        setExperiences(updatedExperiences)
+    }
+
     const handleAddExperience = () => {
         setExperiences([...experience, newExperience])
         setNewExperience(
@@ -36,11 +42,71 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
         )
     }
 
+    const handleDeleteExperience = (index: number) => {
+        const updatedExperiences = experience.filter((_, i) => i !== index)
+        setExperiences(updatedExperiences)
+    }
+
 
 
     return (
 
         <div>
+            {/* Afficher les expériences existantes */}
+            {experience.map((exp, index) => (
+                <div key={index} className='flex flex-col gap-4 mb-6 p-4 border border-primary rounded-lg'>
+                    <div className='flex justify-between items-center'>
+                        <span className='text-sm font-semibold text-primary'>Expérience {index + 1}</span>
+                        <button
+                            onClick={() => handleDeleteExperience(index)}
+                            className='btn btn-error btn-xs'
+                        >
+                            <Trash2 className='w-3' />
+                        </button>
+                    </div>
+                    <div className='flex justify-between'>
+                        <input
+                            type="text"
+                            placeholder='Nom complet'
+                            value={exp.jobTitle}
+                            onChange={(e) => handleExistingChange(index, 'jobTitle', e.target.value)}
+                            className='input input-bordered w-full'
+                        />
+                        <input
+                            type="text"
+                            placeholder="Nom de l'entreprise"
+                            value={exp.companyName}
+                            onChange={(e) => handleExistingChange(index, 'companyName', e.target.value)}
+                            className='input input-bordered w-full ml-4'
+                        />
+                    </div>
+
+                    <div className='flex justify-between'>
+                        <input
+                            type="date"
+                            placeholder='Date de début'
+                            value={exp.startDate}
+                            onChange={(e) => handleExistingChange(index, 'startDate', e.target.value)}
+                            className='input input-bordered w-full'
+                        />
+                        <input
+                            type="date"
+                            placeholder='Date de fin'
+                            value={exp.endDate}
+                            onChange={(e) => handleExistingChange(index, 'endDate', e.target.value)}
+                            className='input input-bordered w-full ml-4'
+                        />
+                    </div>
+                    <textarea
+                        placeholder='Description'
+                        value={exp.description}
+                        onChange={(e) => handleExistingChange(index, 'description', e.target.value)}
+                        className='input input-bordered w-full'
+                    ></textarea>
+                </div>
+            ))}
+
+            {/* Formulaire pour ajouter une nouvelle expérience */}
             <div className='flex flex-col gap-4'>
                 <div className='flex justify-between'>
                     <input
