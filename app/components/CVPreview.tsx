@@ -101,7 +101,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 </div>
                             </li>
                             <li className='flex'>
-                                <div className='text-lg relative whitespace-nowrap overflow-hidden text-ellipsis'>
+                                <div className='text-lg relative break-words'>
                                     <div className='ml-8'>
                                         {personalDetails.email}
                                     </div>
