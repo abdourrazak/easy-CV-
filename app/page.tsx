@@ -99,21 +99,22 @@ export default function Home() {
       try {
 
         const canvas = await html2canvas(element , {
-          scale : 3,
+          scale : 2,
           useCORS: true,
         })
-        const imgData = canvas.toDataURL('image/png')
+        const imgData = canvas.toDataURL('image/jpeg', 0.85)
 
         const pdf = new jsPDF({
           orientation:"portrait",
           unit:'mm',
-          format:"A4"
+          format:"A4",
+          compress: true
         })
         
         const pdfWidth = pdf.internal.pageSize.getWidth()
         const pdfHeight = (canvas.height * pdfWidth) / canvas.width 
 
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
         pdf.save(`cv.pdf`)
 
         const modal = document.getElementById('my_modal_3') as HTMLDialogElement

@@ -83,13 +83,13 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
 
                 <div className='mt-4 flex-col w-full'>
                     <div>
-                        <h1 className='uppercase font-bold my-2'>
+                        <h1 className='uppercase font-bold my-2 text-xl'>
                             Contact
                         </h1>
                         <ul className='space-y-2'>
 
                             <li className='flex'>
-                                <div className='break-all text-base relative'>
+                                <div className='break-all text-lg relative'>
                                     <div className='ml-8'>
                                         {personalDetails.phone}
                                     </div>
@@ -101,7 +101,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 </div>
                             </li>
                             <li className='flex'>
-                                <div className='break-all text-base relative'>
+                                <div className='break-all text-lg relative'>
                                     <div className='ml-8'>
                                         {personalDetails.email}
                                     </div>
@@ -113,7 +113,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 </div>
                             </li>
                             <li className='flex'>
-                                <div className='break-all text-base relative'>
+                                <div className='break-all text-lg relative'>
                                     <div className='ml-8'>
                                         {personalDetails.address}
                                     </div>
@@ -128,7 +128,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                     </div>
 
                     <div className='mt-6'>
-                        <h1 className='uppercase font-bold my-2'>
+                        <h1 className='uppercase font-bold my-2 text-xl'>
                             Compétences
                         </h1>
                         <div className='flex flex-wrap gap-2'>
@@ -141,7 +141,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                     </div>
 
                     <div className='mt-6'>
-                        <h1 className='uppercase font-bold my-2'>
+                        <h1 className='uppercase font-bold my-2 text-xl'>
                             Langues
                         </h1>
                         <div className='flex flex-col space-y-2'>
@@ -161,7 +161,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                     </div>
 
                     <div className='mt-6'>
-                        <h1 className='uppercase font-bold my-2'>
+                        <h1 className='uppercase font-bold my-2 text-xl'>
                         Hobies
                         </h1>
                         <div className='flex flex-col space-y-2'>
@@ -181,13 +181,13 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
             <div className='w-2/3 ml-8'>
 
                 <div className='w-full flex flex-col space-y-4'>
-                    <h1 className='uppercase text-2xl font-semibold'>
+                    <h1 className='uppercase text-4xl font-bold'>
                         {personalDetails.fullName}
                     </h1>
-                    <h2 className='uppercase text-6xl text-primary font-bold'>
+                    <h2 className='uppercase text-7xl text-primary font-bold'>
                         {personalDetails.postSeeking}
                     </h2>
-                    <p className='break-all  w-full text-base'>
+                    <p className='break-all  w-full text-lg'>
                         {personalDetails.description}
                     </p>
                 </div>
@@ -205,12 +205,12 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 <li className='step step-primary' key={index}>
                                     <div className='text-left'>
                                         <h2
-                                            className='flex text-lg uppercase font-bold'>
+                                            className='flex text-xl uppercase font-bold'>
                                             <BriefcaseBusiness className='w-5' />
                                             <span className='ml-2'>{exp.jobTitle}</span>
                                         </h2>
                                         <div
-                                            className='text-base my-2'
+                                            className='text-lg my-2'
                                         >
                                             <span
                                                 className='badge badge-primary'
@@ -225,7 +225,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             </span>
 
                                         </div>
-                                        <p className='text-base'>
+                                        <p className='text-lg'>
                                             {exp.description}
                                         </p>
                                     </div>
@@ -244,12 +244,12 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 <li className='step step-primary' key={index}>
                                     <div className='text-left'>
                                         <h2
-                                            className='flex text-lg uppercase font-bold'>
+                                            className='flex text-xl uppercase font-bold'>
                                             <GraduationCap className='w-5' />
                                             <span className='ml-2'>{edu.degree}</span>
                                         </h2>
                                         <div
-                                            className='text-base my-2'
+                                            className='text-lg my-2'
                                         >
                                             <span
                                                 className='badge badge-primary'
@@ -264,7 +264,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             </span>
 
                                         </div>
-                                        <p className='text-base'>
+                                        <p className='text-lg'>
                                             {edu.description}
                                         </p>
                                     </div>
