@@ -101,20 +101,26 @@ export default function Home() {
         const canvas = await html2canvas(element , {
           scale : 2,
           useCORS: true,
+          height: 1050,
+          windowHeight: 1050
         })
         const imgData = canvas.toDataURL('image/jpeg', 0.85)
 
         const pdf = new jsPDF({
           orientation:"portrait",
           unit:'mm',
-          format:"A4",
+          format:"a4",
           compress: true
         })
         
         const pdfWidth = pdf.internal.pageSize.getWidth()
-        const pdfHeight = (canvas.height * pdfWidth) / canvas.width 
+        const pdfHeight = pdf.internal.pageSize.getHeight()
+        
+        // Calculer la hauteur proportionnelle mais limiter à la hauteur A4
+        const imgHeight = (canvas.height * pdfWidth) / canvas.width
+        const finalHeight = Math.min(imgHeight, pdfHeight)
 
-        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, finalHeight, undefined, 'FAST');
         pdf.save(`cv.pdf`)
 
         const modal = document.getElementById('my_modal_3') as HTMLDialogElement

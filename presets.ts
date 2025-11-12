@@ -1,7 +1,7 @@
 import { Education, Experience, Hobby, Language, PersonalDetails, Skill } from '@/type';
 
 export const personalDetailsPreset: PersonalDetails = {
-    fullName: 'ABDOURRAZAK',
+    fullName: 'Abd Razak',
     email: 'abdourrazakahmadou250@gmail.com',
     phone: '+237 6930988',
     address: 'Douala , cameroun',
