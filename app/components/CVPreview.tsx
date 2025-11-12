@@ -61,7 +61,7 @@ const getStarRating = (proficiency: string) => {
 
 const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences, educations, languages, skills , hobbies , download , ref}) => {
     return (
-        <div ref={ref} className={` flex p-16 w-[950px] h-[1200px] shadow-lg ${download ? 'mb-10' : ''}`} data-theme={theme}>
+        <div ref={ref} className={` flex p-16 w-[950px] h-[1050px] shadow-lg ${download ? 'mb-10' : ''}`} data-theme={theme}>
 
             <div className='flex flex-col w-1/3'>
                 <div className='h-80 rounded-full border-4 overflow-hidden border-primary hobbies'>
@@ -101,7 +101,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                 </div>
                             </li>
                             <li className='flex'>
-                                <div className='break-all text-lg relative'>
+                                <div className='text-lg relative whitespace-nowrap overflow-hidden text-ellipsis'>
                                     <div className='ml-8'>
                                         {personalDetails.email}
                                     </div>
@@ -210,7 +210,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             <span className='ml-2'>{exp.jobTitle}</span>
                                         </h2>
                                         <div
-                                            className='text-lg my-2'
+                                            className='text-lg my-2 whitespace-nowrap overflow-hidden text-ellipsis'
                                         >
                                             <span
                                                 className='badge badge-primary'
@@ -249,7 +249,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             <span className='ml-2'>{edu.degree}</span>
                                         </h2>
                                         <div
-                                            className='text-lg my-2'
+                                            className='text-lg my-2 whitespace-nowrap overflow-hidden text-ellipsis'
                                         >
                                             <span
                                                 className='badge badge-primary'
