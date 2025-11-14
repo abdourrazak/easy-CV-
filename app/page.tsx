@@ -124,6 +124,7 @@ export default function Home() {
 
         const modal = document.getElementById('my_modal_3') as HTMLDialogElement
         if(modal){
+          document.body.classList.remove('modal-open')
           modal.close()
         }
 
@@ -153,7 +154,11 @@ export default function Home() {
 
               </h1>
 
-              <button className="btn btn-primary" onClick={() => (document.getElementById('my_modal_3') as HTMLDialogElement).showModal()}>
+              <button className="btn btn-primary" onClick={() => {
+                const modal = document.getElementById('my_modal_3') as HTMLDialogElement;
+                document.body.classList.add('modal-open');
+                modal.showModal();
+              }}>
                 Prévisualiser
                 <Eye className="w-4" />
               </button>
@@ -306,36 +311,41 @@ export default function Home() {
 
 
 
-        <dialog id="my_modal_3" className="modal">
-          <div className="modal-box w-full max-w-6xl mx-auto px-4 sm;px-6 lg:px-8">
+        <dialog id="my_modal_3" className="modal modal-open:overflow-hidden">
+          <div className="modal-box w-full max-w-6xl mx-auto px-2 sm:px-4 lg:px-8 max-h-screen overflow-y-auto">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+              <button 
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10"
+                onClick={() => document.body.classList.remove('modal-open')}
+              >✕</button>
             </form>
 
             <div className="mt-5">
               <div className="flex justify-end mb-5">
-                <button onClick={handleDownloadPdf} className="btn btn-primary">
+                <button onClick={handleDownloadPdf} className="btn btn-primary btn-sm">
                   Télécharger
                   <Save className='w-4' />
                 </button>
               </div>
 
-              <div className="w-full max-x-full overflow-auto">
-                <div className="w-full max-w-full flex justify-center items-center">
-                  <CVPreview
-                    personalDetails={personalDetails}
-                    file={file}
-                    theme={theme}
-                    experiences={experiences}
-                    educations={educations}
-                    languages={languages}
-                    hobbies={hobbies}
-                    skills={skills}
-                    download={true}
-                    ref={cvPreviewRef}
+              <div className="w-full overflow-hidden">
+                <div className="w-full flex justify-center items-center">
+                  <div className="transform scale-50 sm:scale-75 lg:scale-100 origin-top">
+                    <CVPreview
+                      personalDetails={personalDetails}
+                      file={file}
+                      theme={theme}
+                      experiences={experiences}
+                      educations={educations}
+                      languages={languages}
+                      hobbies={hobbies}
+                      skills={skills}
+                      download={true}
+                      ref={cvPreviewRef}
 
-                  />
+                    />
+                  </div>
                 </div>
               </div>
 
