@@ -106,18 +106,47 @@ export default function Home() {
           foreignObjectRendering: true
         })
         
+        // Détecter automatiquement la hauteur réelle du contenu
+        const ctx = canvas.getContext('2d');
+        const imageData = ctx?.getImageData(0, 0, canvas.width, canvas.height);
+        let lastContentRow = 0;
+        
+        if (imageData) {
+          // Parcourir de bas en haut pour trouver la dernière ligne avec du contenu
+          for (let y = canvas.height - 1; y >= 0; y--) {
+            let hasContent = false;
+            for (let x = 0; x < canvas.width; x++) {
+              const pixelIndex = (y * canvas.width + x) * 4;
+              const r = imageData.data[pixelIndex];
+              const g = imageData.data[pixelIndex + 1];
+              const b = imageData.data[pixelIndex + 2];
+              const a = imageData.data[pixelIndex + 3];
+              
+              // Vérifier si le pixel n'est pas transparent ou blanc pur
+              if (a > 0 && !(r > 240 && g > 240 && b > 240)) {
+                hasContent = true;
+                break;
+              }
+            }
+            if (hasContent) {
+              lastContentRow = y + 50; // Ajouter une petite marge
+              break;
+            }
+          }
+        }
+        
         // Créer un canvas temporaire pour rogner l'image
         const tempCanvas = document.createElement('canvas');
         const tempCtx = tempCanvas.getContext('2d');
         
-        // Définir les dimensions exactes du CV (950px de largeur, contenu réel en hauteur)
+        // Définir les dimensions exactes du CV
         const cvWidth = 950 * 2; // scale 2
-        const cvHeight = Math.min(canvas.height, 1050 * 2); // limiter à 1050px * scale
+        const cvHeight = Math.min(lastContentRow, canvas.height);
         
         tempCanvas.width = cvWidth;
         tempCanvas.height = cvHeight;
         
-        // Copier seulement la partie du CV sans marges
+        // Copier seulement la partie du CV avec contenu
         tempCtx?.drawImage(canvas, 0, 0, cvWidth, cvHeight, 0, 0, cvWidth, cvHeight);
         
         const imgData = tempCanvas.toDataURL('image/jpeg', 0.85)
