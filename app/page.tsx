@@ -100,56 +100,10 @@ export default function Home() {
         const canvas = await html2canvas(element , {
           scale : 2,
           useCORS: true,
-          backgroundColor: null,
-          removeContainer: true,
-          allowTaint: true,
-          foreignObjectRendering: true
+          height: 1050,
+          windowHeight: 1050
         })
-        
-        // Détecter automatiquement la hauteur réelle du contenu
-        const ctx = canvas.getContext('2d');
-        const imageData = ctx?.getImageData(0, 0, canvas.width, canvas.height);
-        let lastContentRow = 0;
-        
-        if (imageData) {
-          // Parcourir de bas en haut pour trouver la dernière ligne avec du contenu
-          for (let y = canvas.height - 1; y >= 0; y--) {
-            let hasContent = false;
-            for (let x = 0; x < canvas.width; x++) {
-              const pixelIndex = (y * canvas.width + x) * 4;
-              const r = imageData.data[pixelIndex];
-              const g = imageData.data[pixelIndex + 1];
-              const b = imageData.data[pixelIndex + 2];
-              const a = imageData.data[pixelIndex + 3];
-              
-              // Vérifier si le pixel n'est pas transparent ou blanc pur
-              if (a > 0 && !(r > 240 && g > 240 && b > 240)) {
-                hasContent = true;
-                break;
-              }
-            }
-            if (hasContent) {
-              lastContentRow = y + 50; // Ajouter une petite marge
-              break;
-            }
-          }
-        }
-        
-        // Créer un canvas temporaire pour rogner l'image
-        const tempCanvas = document.createElement('canvas');
-        const tempCtx = tempCanvas.getContext('2d');
-        
-        // Définir les dimensions exactes du CV
-        const cvWidth = 950 * 2; // scale 2
-        const cvHeight = Math.min(lastContentRow, canvas.height);
-        
-        tempCanvas.width = cvWidth;
-        tempCanvas.height = cvHeight;
-        
-        // Copier seulement la partie du CV avec contenu
-        tempCtx?.drawImage(canvas, 0, 0, cvWidth, cvHeight, 0, 0, cvWidth, cvHeight);
-        
-        const imgData = tempCanvas.toDataURL('image/jpeg', 0.85)
+        const imgData = canvas.toDataURL('image/jpeg', 0.85)
 
         const pdf = new jsPDF({
           orientation:"portrait",
@@ -159,9 +113,13 @@ export default function Home() {
         })
         
         const pdfWidth = pdf.internal.pageSize.getWidth()
-        const imgHeight = (tempCanvas.height * pdfWidth) / tempCanvas.width
+        const pdfHeight = pdf.internal.pageSize.getHeight()
+        
+        // Calculer la hauteur proportionnelle mais limiter à la hauteur A4
+        const imgHeight = (canvas.height * pdfWidth) / canvas.width
+        const finalHeight = Math.min(imgHeight, pdfHeight)
 
-        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, imgHeight, undefined, 'FAST');
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, finalHeight, undefined, 'FAST');
         pdf.save(`cv.pdf`)
 
         const modal = document.getElementById('my_modal_3') as HTMLDialogElement
