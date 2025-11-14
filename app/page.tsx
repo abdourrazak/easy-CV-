@@ -144,10 +144,9 @@ export default function Home() {
 
   return (
     <div>
-      <div className="hidden lg:block">
-        <section className="flex items-center h-screen">
+      <section className="flex flex-col lg:flex-row min-h-screen">
 
-          <div className="w-1/3 h-full p-10 bg-base-200 scrollable no-scrollbar ">
+          <div className="w-full lg:w-1/3 lg:h-screen p-6 lg:p-10 bg-base-200 scrollable no-scrollbar ">
             <div className="mb-4 flex justify-between items-center">
               <h1 className="text-2xl font-bold italic">
                 Easy
@@ -256,7 +255,7 @@ export default function Home() {
 
           </div>
 
-          <div className="w-2/3 h-full bg-base-100 bg-[url('/file.svg')] bg-cover  bg-center scrollable-preview relative">
+          <div className="w-full lg:w-2/3 lg:h-screen bg-base-100 bg-[url('/file.svg')] bg-cover  bg-center scrollable-preview relative mt-8 lg:mt-0">
 
 
             <div className="flex items-center justify-center fixed z-[9999] top-5 right-5">
@@ -303,7 +302,7 @@ export default function Home() {
 
           </div>
 
-        </section>
+      </section>
 
 
 
@@ -345,27 +344,6 @@ export default function Home() {
           </div>
         </dialog>
 
-      </div>
-
-      <div className="lg:hidden">
-        <div className="hero bg-base-200 min-h-screen">
-          <div className="hero-content text-center">
-            <div className="max-w-md">
-              <h1 className="text-3xl font-bold">Désolé,Easy CV est uniquement accessible sur ordinateur.</h1>
-              <Image
-                src="/sad-sorry.gif"
-                width={500}
-                height={500}
-                alt="Picture of the author"
-                className="mx-auto my-6"
-              />
-              <p className="py-6">
-                Pour créer et personnaliser votre CV, veuillez utiliser un ordinateur. Nous vous remercions de votre compréhension.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
