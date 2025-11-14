@@ -100,10 +100,27 @@ export default function Home() {
         const canvas = await html2canvas(element , {
           scale : 2,
           useCORS: true,
-          height: 1050,
-          windowHeight: 1050
+          backgroundColor: null,
+          removeContainer: true,
+          allowTaint: true,
+          foreignObjectRendering: true
         })
-        const imgData = canvas.toDataURL('image/jpeg', 0.85)
+        
+        // Créer un canvas temporaire pour rogner l'image
+        const tempCanvas = document.createElement('canvas');
+        const tempCtx = tempCanvas.getContext('2d');
+        
+        // Définir les dimensions exactes du CV (950px de largeur, contenu réel en hauteur)
+        const cvWidth = 950 * 2; // scale 2
+        const cvHeight = Math.min(canvas.height, 1050 * 2); // limiter à 1050px * scale
+        
+        tempCanvas.width = cvWidth;
+        tempCanvas.height = cvHeight;
+        
+        // Copier seulement la partie du CV sans marges
+        tempCtx?.drawImage(canvas, 0, 0, cvWidth, cvHeight, 0, 0, cvWidth, cvHeight);
+        
+        const imgData = tempCanvas.toDataURL('image/jpeg', 0.85)
 
         const pdf = new jsPDF({
           orientation:"portrait",
@@ -113,13 +130,9 @@ export default function Home() {
         })
         
         const pdfWidth = pdf.internal.pageSize.getWidth()
-        const pdfHeight = pdf.internal.pageSize.getHeight()
-        
-        // Calculer la hauteur proportionnelle mais limiter à la hauteur A4
-        const imgHeight = (canvas.height * pdfWidth) / canvas.width
-        const finalHeight = Math.min(imgHeight, pdfHeight)
+        const imgHeight = (tempCanvas.height * pdfWidth) / tempCanvas.width
 
-        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, finalHeight, undefined, 'FAST');
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, imgHeight, undefined, 'FAST');
         pdf.save(`cv.pdf`)
 
         const modal = document.getElementById('my_modal_3') as HTMLDialogElement
