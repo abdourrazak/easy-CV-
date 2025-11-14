@@ -18,7 +18,7 @@ export default function Home() {
   const [personalDetails, setPersonalDetails] = useState<PersonalDetails>(personalDetailsPreset)
   const [file, setFile] = useState<File | null>(null)
   const [theme, setTheme] = useState<string>('nord')
-  const [zoom, setZoom] = useState<number>(200)
+  const [zoom, setZoom] = useState<number>(100)
   const [experiences, setExperience] = useState<Experience[]>(experiencesPreset)
   const [educations, setEducations] = useState<Education[]>(educationsPreset)
   const [languages, setLanguages] = useState<Language[]>(languagesPreset)
@@ -143,23 +143,22 @@ export default function Home() {
 
   return (
     <div>
-      <section className="flex flex-col lg:flex-row min-h-screen">
+      <section className="flex min-h-screen">
 
-          <div className="w-full lg:w-1/3 lg:h-screen p-6 lg:p-10 bg-base-200 scrollable no-scrollbar ">
-            <div className="mb-4 flex justify-between items-center">
-              <h1 className="text-2xl font-bold italic">
+          <div className="w-1/3 h-screen p-4 sm:p-6 lg:p-10 bg-base-200 scrollable no-scrollbar ">
+            <div className="mb-4 flex justify-between items-center gap-2">
+              <h1 className="text-lg sm:text-2xl font-bold italic">
                 Easy
                 <span className="text-primary">CV</span>
 
               </h1>
 
-              <button className="btn btn-primary" onClick={() => (document.getElementById('my_modal_3') as HTMLDialogElement).showModal()}>
-                Prévisualiser
+              <button className="btn btn-primary btn-sm" onClick={() => (document.getElementById('my_modal_3') as HTMLDialogElement).showModal()}>
                 <Eye className="w-4" />
               </button>
             </div>
 
-            <div className="flex  flex-col gap-6 rounded-lg">
+            <div className="flex  flex-col gap-4 sm:gap-6 rounded-lg">
 
               <div className="flex justify-between items-center">
                 <h1 className="badge badge-primary badge-outline">Qui êtes-vous ?</h1>
@@ -254,24 +253,24 @@ export default function Home() {
 
           </div>
 
-          <div className="w-full lg:w-2/3 lg:h-screen bg-base-100 bg-[url('/file.svg')] bg-cover  bg-center scrollable-preview relative mt-8 lg:mt-0">
+          <div className="w-2/3 h-screen bg-base-100 bg-[url('/file.svg')] bg-cover  bg-center scrollable-preview relative">
 
 
-            <div className="flex items-center justify-center fixed z-[9999] top-5 right-5">
+            <div className="flex items-center justify-center fixed z-[9999] top-2 right-2 sm:top-5 sm:right-5 gap-2">
               <input
                 type="range"
                 min={50}
                 max={200}
                 value={zoom}
                 onChange={(e) => setZoom(Number(e.target.value))}
-                className="range range-xs range-primary" />
-              <p className="ml-4 text-sm text-primary">{zoom}%</p>
+                className="range range-xs range-primary w-20 sm:w-32" />
+              <p className="text-xs sm:text-sm text-primary">{zoom}%</p>
             </div>
 
             <select
               value={theme}
               onChange={(e) => setTheme(e.target.value)}
-              className="select select-bordered fixed z-[9999] select-sm top-12 right-5"
+              className="select select-bordered fixed z-[9999] select-sm top-12 right-2 sm:right-5 text-xs sm:text-sm"
             >
               {themes.map((themeName) => (
                 <option key={themeName} value={themeName}>
