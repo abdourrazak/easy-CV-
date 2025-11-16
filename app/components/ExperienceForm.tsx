@@ -30,7 +30,7 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
     }
 
     const handleAddExperience = () => {
-        if (experience.length < 2 && newExperience.jobTitle.trim() && newExperience.companyName.trim()) {
+        if (experience.length < 4 && newExperience.jobTitle.trim() && newExperience.companyName.trim()) {
             setExperiences([...experience, newExperience])
             setNewExperience(
                 {
@@ -175,10 +175,10 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
 
             <button
                 onClick={handleAddExperience}
-                disabled={experience.length >= 2 || !newExperience.jobTitle.trim() || !newExperience.companyName.trim()}
-                className={`btn mt-4 ${experience.length >= 2 ? 'btn-disabled' : 'btn-primary'}`}
+                disabled={experience.length >= 4 || !newExperience.jobTitle.trim() || !newExperience.companyName.trim()}
+                className={`btn mt-4 ${experience.length >= 4 ? 'btn-disabled' : 'btn-primary'}`}
             >
-                {experience.length >= 2 ? 'Limite atteinte (2 max)' : 'Ajouter'}
+                {experience.length >= 4 ? 'Limite atteinte (4 max)' : 'Ajouter'}
                 <Plus className='w-4' />
             </button>
 

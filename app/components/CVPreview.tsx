@@ -193,14 +193,14 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                 </div>
 
                 <section
-                    className='w-full h-fit p-5'
+                    className='w-full h-fit p-3'
                 >
                     <div>
                         <h1
-                            className='uppercase font-bold mb-2'
+                            className='uppercase font-bold mb-1'
                         >Experiences
                         </h1>
-                        <ul className='steps steps-vertical space-y-3'>
+                        <ul className='steps steps-vertical space-y-1'>
                             {experiences.map((exp, index) => (
                                 <li className='step step-primary' key={index}>
                                     <div className='text-left'>
@@ -210,22 +210,22 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             <span className='ml-2'>{exp.jobTitle}</span>
                                         </h2>
                                         <div
-                                            className='text-lg my-2 whitespace-nowrap overflow-hidden text-ellipsis'
+                                            className='text-sm my-1 whitespace-nowrap overflow-hidden text-ellipsis'
                                         >
                                             <span
-                                                className='badge badge-primary'
+                                                className='badge badge-primary badge-sm'
                                             >
                                                 {exp.companyName}
                                             </span>
                                             <span
-                                                className='italic ml-2'
+                                                className='italic ml-2 text-sm'
                                             >
                                                 {formatDate(exp.startDate)} {" "}au {" "}
                                                 {formatDate(exp.endDate)}
                                             </span>
 
                                         </div>
-                                        <p className='text-lg break-words leading-tight whitespace-pre-line'>
+                                        <p className='text-sm break-words leading-tight whitespace-pre-line'>
                                             {exp.description}
                                         </p>
                                     </div>
@@ -234,12 +234,12 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                         </ul>
                     </div>
 
-                    <div className='mt-6'>
+                    <div className='mt-4'>
                         <h1
-                            className='uppercase font-bold mb-2'
+                            className='uppercase font-bold mb-1'
                         >Formations
                         </h1>
-                        <ul className='steps steps-vertical space-y-3'>
+                        <ul className='steps steps-vertical space-y-1'>
                             {educations.map((edu, index) => (
                                 <li className='step step-primary' key={index}>
                                     <div className='text-left'>
@@ -249,22 +249,22 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             <span className='ml-2'>{edu.degree}</span>
                                         </h2>
                                         <div
-                                            className='text-lg my-2 whitespace-nowrap overflow-hidden text-ellipsis'
+                                            className='text-sm my-1 whitespace-nowrap overflow-hidden text-ellipsis'
                                         >
                                             <span
-                                                className='badge badge-primary'
+                                                className='badge badge-primary badge-sm'
                                             >
                                                 {edu.school}
                                             </span>
                                             <span
-                                                className='italic ml-2'
+                                                className='italic ml-2 text-sm'
                                             >
                                                 {formatDate(edu.startDate)}{" "} au {" "}
                                                 {formatDate(edu.endDate)}
                                             </span>
 
                                         </div>
-                                        <p className='text-lg break-words leading-tight whitespace-pre-line'>
+                                        <p className='text-sm break-words leading-tight whitespace-pre-line'>
                                             {edu.description}
                                         </p>
                                     </div>

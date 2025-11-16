@@ -30,7 +30,7 @@ const EducationForm: React.FC<Props> = ({ educations, setEducations }) => {
     }
 
     const handleAddEducation = () => {
-        if (educations.length < 2 && newEducation.school.trim() && newEducation.degree.trim()) {
+        if (educations.length < 3 && newEducation.school.trim() && newEducation.degree.trim()) {
             setEducations([...educations, newEducation])
             setNewEducation(
                 {
@@ -174,10 +174,10 @@ const EducationForm: React.FC<Props> = ({ educations, setEducations }) => {
 
             <button
                 onClick={handleAddEducation}
-                disabled={educations.length >= 2 || !newEducation.school.trim() || !newEducation.degree.trim()}
-                className={`btn mt-4 ${educations.length >= 2 ? 'btn-disabled' : 'btn-primary'}`}
+                disabled={educations.length >= 3 || !newEducation.school.trim() || !newEducation.degree.trim()}
+                className={`btn mt-4 ${educations.length >= 3 ? 'btn-disabled' : 'btn-primary'}`}
             >
-                {educations.length >= 2 ? 'Limite atteinte (2 max)' : 'Ajouter'}
+                {educations.length >= 3 ? 'Limite atteinte (3 max)' : 'Ajouter'}
                 <Plus className='w-4' />
             </button>
 
