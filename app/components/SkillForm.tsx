@@ -26,7 +26,7 @@ const SkillForm: React.FC<Props> = ({ skills, setSkills }) => {
   }
 
   const handleAddSkill = () => {
-    if (skills.length < 6 && newSkill.name.trim()) {
+    if (skills.length < 4 && newSkill.name.trim()) {
       setSkills([...skills, newSkill]);
       setNewSkill({ name: '' });
     }
@@ -71,10 +71,10 @@ const SkillForm: React.FC<Props> = ({ skills, setSkills }) => {
 
       <button
         onClick={handleAddSkill}
-        disabled={skills.length >= 6 || !newSkill.name.trim()}
-        className={`btn mt-4 ${skills.length >= 6 ? 'btn-disabled' : 'btn-primary'}`}
+        disabled={skills.length >= 4 || !newSkill.name.trim()}
+        className={`btn mt-4 ${skills.length >= 4 ? 'btn-disabled' : 'btn-primary'}`}
       >
-        {skills.length >= 6 ? 'Limite atteinte (6 max)' : 'Ajouter'}
+        {skills.length >= 4 ? 'Limite atteinte (4 max)' : 'Ajouter'}
         <Plus className='w-4' />
       </button>
     </div>
