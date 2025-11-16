@@ -187,7 +187,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                     <h2 className='uppercase text-7xl text-primary font-bold'>
                         {personalDetails.postSeeking}
                     </h2>
-                    <p className='break-all  w-full text-lg'>
+                    <p className='break-words w-full text-lg leading-tight'>
                         {personalDetails.description}
                     </p>
                 </div>
@@ -225,7 +225,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             </span>
 
                                         </div>
-                                        <p className='text-lg'>
+                                        <p className='text-lg break-words leading-tight whitespace-pre-line'>
                                             {exp.description}
                                         </p>
                                     </div>
@@ -264,7 +264,7 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
                                             </span>
 
                                         </div>
-                                        <p className='text-lg'>
+                                        <p className='text-lg break-words leading-tight whitespace-pre-line'>
                                             {edu.description}
                                         </p>
                                     </div>

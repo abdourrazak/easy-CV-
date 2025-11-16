@@ -30,16 +30,18 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
     }
 
     const handleAddExperience = () => {
-        setExperiences([...experience, newExperience])
-        setNewExperience(
-            {
-                jobTitle: '',
-                companyName: '',
-                startDate: '',
-                endDate: '',
-                description: '',
-            }
-        )
+        if (experience.length < 3 && newExperience.jobTitle.trim() && newExperience.companyName.trim()) {
+            setExperiences([...experience, newExperience])
+            setNewExperience(
+                {
+                    jobTitle: '',
+                    companyName: '',
+                    startDate: '',
+                    endDate: '',
+                    description: '',
+                }
+            )
+        }
     }
 
     const handleDeleteExperience = (index: number) => {
@@ -107,7 +109,8 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
                         placeholder='Description'
                         value={exp.description}
                         onChange={(e) => handleExistingChange(index, 'description', e.target.value)}
-                        className='input input-bordered w-full'
+                        className='textarea textarea-bordered w-full h-20'
+                        rows={3}
                     ></textarea>
                 </div>
             ))}
@@ -165,15 +168,17 @@ const ExperienceForm: React.FC<Props> = ({ experience, setExperiences }) => {
                     placeholder='Description'
                     value={newExperience.description}
                     onChange={(e) => handleChange(e, 'description')}
-                    className='input input-bordered w-full'
+                    className='textarea textarea-bordered w-full h-20'
+                    rows={3}
                 ></textarea>
             </div>
 
             <button
                 onClick={handleAddExperience}
-                className='btn btn-primary mt-4'
+                disabled={experience.length >= 3 || !newExperience.jobTitle.trim() || !newExperience.companyName.trim()}
+                className={`btn mt-4 ${experience.length >= 3 ? 'btn-disabled' : 'btn-primary'}`}
             >
-                Ajouter
+                {experience.length >= 3 ? 'Limite atteinte (3 max)' : 'Ajouter'}
                 <Plus className='w-4' />
             </button>
 

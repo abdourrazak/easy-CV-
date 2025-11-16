@@ -30,16 +30,18 @@ const EducationForm: React.FC<Props> = ({ educations, setEducations }) => {
     }
 
     const handleAddEducation = () => {
-        setEducations([...educations, newEducation])
-        setNewEducation(
-            {
-                school: '',
-                degree: '',
-                startDate: '',
-                endDate: '',
-                description: '',
-            }
-        )
+        if (educations.length < 2 && newEducation.school.trim() && newEducation.degree.trim()) {
+            setEducations([...educations, newEducation])
+            setNewEducation(
+                {
+                    school: '',
+                    degree: '',
+                    startDate: '',
+                    endDate: '',
+                    description: '',
+                }
+            )
+        }
     }
 
     const handleDeleteEducation = (index: number) => {
@@ -105,7 +107,8 @@ const EducationForm: React.FC<Props> = ({ educations, setEducations }) => {
                         placeholder='Description'
                         value={edu.description}
                         onChange={(e) => handleExistingChange(index, 'description', e.target.value)}
-                        className='input input-bordered w-full'
+                        className='textarea textarea-bordered w-full h-20'
+                        rows={3}
                     ></textarea>
                 </div>
             ))}
@@ -164,15 +167,17 @@ const EducationForm: React.FC<Props> = ({ educations, setEducations }) => {
                     placeholder='Description'
                     value={newEducation.description}
                     onChange={(e) => handleChange(e, 'description')}
-                    className='input input-bordered w-full'
+                    className='textarea textarea-bordered w-full h-20'
+                    rows={3}
                 ></textarea>
             </div>
 
             <button
                 onClick={handleAddEducation}
-                className='btn btn-primary mt-4'
+                disabled={educations.length >= 2 || !newEducation.school.trim() || !newEducation.degree.trim()}
+                className={`btn mt-4 ${educations.length >= 2 ? 'btn-disabled' : 'btn-primary'}`}
             >
-                Ajouter
+                {educations.length >= 2 ? 'Limite atteinte (2 max)' : 'Ajouter'}
                 <Plus className='w-4' />
             </button>
 

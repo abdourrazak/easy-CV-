@@ -26,8 +26,10 @@ const HobbyForm : React.FC<Props> = ({ hobbies, setHobbies }) => {
     }
   
     const handleAddHobby = () => {
-      setHobbies([...hobbies, newHobby]);
-      setNewHobby({ name: '' });
+      if (hobbies.length < 4 && newHobby.name.trim()) {
+        setHobbies([...hobbies, newHobby]);
+        setNewHobby({ name: '' });
+      }
     }
 
     const handleDeleteHobby = (index: number) => {
@@ -66,9 +68,10 @@ const HobbyForm : React.FC<Props> = ({ hobbies, setHobbies }) => {
       />
       <button
         onClick={handleAddHobby}
-        className='btn btn-primary mt-4'
+        disabled={hobbies.length >= 4 || !newHobby.name.trim()}
+        className={`btn mt-4 ${hobbies.length >= 4 ? 'btn-disabled' : 'btn-primary'}`}
       >
-        Ajouter
+        {hobbies.length >= 4 ? 'Limite atteinte (4 max)' : 'Ajouter'}
         <Plus className='w-4' />
       </button>
     </div>

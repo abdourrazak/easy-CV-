@@ -27,13 +27,15 @@ const LanguageForm: React.FC<Props> = ({ languages, setLanguages }) => {
     }
 
     const handleAddLanguage = () => {
-        setLanguages([...languages, newLanguage])
-        setNewLanguage(
-            {
-                language: '',
-                proficiency: ''
-            }
-        )
+        if (languages.length < 4 && newLanguage.language.trim() && newLanguage.proficiency) {
+            setLanguages([...languages, newLanguage])
+            setNewLanguage(
+                {
+                    language: '',
+                    proficiency: ''
+                }
+            )
+        }
     }
 
     const handleDeleteLanguage = (index: number) => {
@@ -98,9 +100,10 @@ const LanguageForm: React.FC<Props> = ({ languages, setLanguages }) => {
 
             <button
                 onClick={handleAddLanguage}
-                className='btn btn-primary mt-4'
+                disabled={languages.length >= 4 || !newLanguage.language.trim() || !newLanguage.proficiency}
+                className={`btn mt-4 ${languages.length >= 4 ? 'btn-disabled' : 'btn-primary'}`}
             >
-                Ajouter
+                {languages.length >= 4 ? 'Limite atteinte (4 max)' : 'Ajouter'}
                 <Plus className='w-4' />
             </button>
         </div>
